@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "scripts": "cz"
   },
   "dependencies": {
     "next": "10.2.3",
@@ -14,6 +15,13 @@
   },
   "devDependencies": {
     "@types/react": "17.0.9",
+    "commitizen": "^4.2.4",
+    "cz-conventional-changelog": "3.3.0",
     "typescript": "4.3.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }
