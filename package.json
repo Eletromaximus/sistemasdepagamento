@@ -6,20 +6,23 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "scripts": "cz"
+    "scripts": "cz",
+    "prepare": "husky install"
   },
   "dependencies": {
     "next": "10.2.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
-    "stripe": "^8.174.0"
+    "stripe": "^8.177.0",
+    "styled-components": "^5.3.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
     "@types/react": "17.0.9",
-    "@typescript-eslint/eslint-plugin": "^4.30.0",
-    "@typescript-eslint/parser": "^4.30.0",
+    "@typescript-eslint/eslint-plugin": "^4.32.0",
+    "@typescript-eslint/parser": "^4.32.0",
+    "autoprefixer": "^10.3.6",
     "commitizen": "^4.2.4",
     "cz-conventional-changelog": "3.3.0",
     "eslint": "^7.32.0",
@@ -27,8 +30,9 @@
     "eslint-plugin-import": "^2.24.2",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
-    "eslint-plugin-react": "^7.25.1",
-    "husky": "^6.0.0",
+    "eslint-plugin-react": "^7.26.0",
+    "husky": "^7.0.0",
+    "postcss": "^8.3.8",
     "typescript": "4.3.2"
   },
   "config": {

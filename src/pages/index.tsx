@@ -40,7 +40,12 @@ export default function Home () {
           Compre pelo mercado pago
         </button>
 
-        <button>
+        <button
+          style={{
+            paddingTop: 10,
+            margin: '10px 0'
+          }}
+        >
           compre pelo strapi
         </button>
       </div>
