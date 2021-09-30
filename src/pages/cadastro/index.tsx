@@ -1,8 +1,8 @@
-import * as S from './style'
+import { StylePage } from './style'
 
 export default function Cadastro () {
   return (
-    <S.StylePage>
+    <StylePage>
       <fieldset>
         <form action=''>
           <label htmlFor="nome">Nome</label>
@@ -13,6 +13,6 @@ export default function Cadastro () {
           <input type='text' className='cep' />
         </form>
       </fieldset>
-    </S.StylePage>
+    </StylePage>
   )
 }
