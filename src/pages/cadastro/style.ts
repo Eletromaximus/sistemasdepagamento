@@ -8,4 +8,8 @@ export const StylePage = styled.div`
 
   justify-content: center;
   align-items: center;
+
+  input {
+    margin-bottom: 5px;
+  }
 `
