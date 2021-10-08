@@ -2,21 +2,18 @@ import { StylePage } from './style'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
+import api from '../../service/api'
 
 const schema = yup.object({
-  nome: yup.string().required().matches(/[a-zA-z]/, 'Apenas letras, por favor'),
-  cep: yup.string()
-    .required('Por favor insira um Cep válido')
-    .matches(/[0-9]{8}/, 'Insira apenas números'),
-  endereco: yup.string().required(),
-  senha: yup.string().required(),
+  name: yup.string().required().matches(/[a-zA-z]/, 'Apenas letras, por favor'),
+  email: yup.string().email('Formato de emai invalido').required(),
+  password: yup.string().required(),
   confirm: yup.string().required()
 })
 interface Inputs {
-  nome: string,
-  cep: string,
-  endereco: string,
-  senha: string,
+  name: string,
+  email: string,
+  password: string,
   confirm: string
 }
 
@@ -24,7 +21,19 @@ export default function Cadastro () {
   const { register, handleSubmit, formState: { errors } } = useForm<Inputs>({
     resolver: yupResolver(schema)
   })
-  const onSubmit: SubmitHandler<Inputs> = (data: any) => console.log(data)
+
+  const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
+    if (data.confirm === data.password) {
+      const { name, email, password } = data
+
+      const info = { name, email, password }
+
+      await api.post('users', info)
+        .catch((error) => console.log(error.status))
+    } else {
+      alert('As senhas não correspondem, tente novamente')
+    }
+  }
 
   return (
     <StylePage>
@@ -32,23 +41,17 @@ export default function Cadastro () {
         <form onSubmit={handleSubmit(onSubmit)}>
 
           <label htmlFor="nome">Nome</label> <br />
-          <input {...register('nome')} /> <br />
-          {errors.nome?.type === 'required' && <p>Digite o nome, por favor</p>}
+          <input {...register('name')} /> <br />
+          {errors.name?.type === 'required' && <p>Digite o nome, por favor</p>}
 
-          <label htmlFor="cep">Cep</label> <br />
-          <input {...register('cep')}
-            maxLength={8}
-          />
+          <label htmlFor="email">email</label> <br />
+          <input {...register('email')} />
           <br />
-          {errors.cep?.message && <p>{errors.cep?.message}</p>}
-
-          <label htmlFor="endereco">Endereço</label> <br />
-          <input {...register('endereco')} /> <br />
-          {errors.endereco?.type === 'required' && (<p>Digite o endereço, por favor</p>)}
+          {errors.email?.message && <p>{errors.email?.message}</p>}
 
           Digite uma Senha <br />
-          <input {...register('senha')} /> <br />
-          {errors.senha?.type === 'required' && (<p>Informe uma senha valida, por favor</p>)}
+          <input {...register('password')} /> <br />
+          {errors.password?.type === 'required' && (<p>Informe uma senha valida, por favor</p>)}
 
           Confirme a senha <br />
           <input {...register('confirm')} /> <br />
