@@ -5,9 +5,15 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import api from '../../service/api'
 
 const schema = yup.object({
-  name: yup.string().required().matches(/[a-zA-z]/, 'Apenas letras, por favor'),
+  name: yup
+    .string()
+    .required()
+    .matches(/[a-zA-z]/, 'Apenas letras, por favor'),
   email: yup.string().email('Formato de emai invalido').required(),
-  password: yup.string().required(),
+  password: yup
+    .string()
+    .required()
+    .matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,32}$/),
   confirm: yup.string().required()
 })
 interface Inputs {

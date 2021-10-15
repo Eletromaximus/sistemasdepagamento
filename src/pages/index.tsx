@@ -25,6 +25,9 @@ export default function Home () {
         flexDirection: 'column'
       }}
     >
+      <button>
+        Login
+      </button>
       <Image
         src='/camisalendas.png'
         alt='imagem de uma camisa'
